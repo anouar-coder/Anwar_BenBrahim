@@ -1,26 +1,26 @@
 import { createFileRoute } from "@tanstack/react-router";
 import heroImg from "@/assets/hero.jpg";
-import projCampus from "@/assets/project-campus.jpg";
-import projAi from "@/assets/project-ai.jpg";
-import projMaze from "@/assets/project-maze.jpg";
+import projMdr from "@/assets/project-ai.jpg";
+import projEhealth from "@/assets/project-campus.jpg";
+import projEeg from "@/assets/project-eeg.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Anwar Ben Brahim — Computer Science Engineering Student" },
+      { title: "Anwar Ben Brahim — Computer Engineering Student | AI & Cybersecurity" },
       {
         name: "description",
         content:
-          "Portfolio of Anwar Ben Brahim, a computer science engineering student. Projects, skills, education and contact.",
+          "Portfolio of Anwar Ben Brahim, computer engineering student at ENIT — AI, machine learning and cybersecurity. Projects, experience, education and contact.",
       },
       {
         property: "og:title",
-        content: "Anwar Ben Brahim — Computer Science Engineering Student",
+        content: "Anwar Ben Brahim — Computer Engineering Student | AI & Cybersecurity",
       },
       {
         property: "og:description",
         content:
-          "Projects, skills, education and contact — the portfolio of a CS engineering student.",
+          "Projects, experience, education and contact — computer engineering student at ENIT, focused on AI and cybersecurity.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -30,115 +30,232 @@ export const Route = createFileRoute("/")({
 });
 
 /* ------------------------------------------------------------------ */
-/* Data — edit these values to make the portfolio yours               */
+/* Data — CV content                                                  */
 /* ------------------------------------------------------------------ */
 
 const NAV = [
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
+  { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
-  { label: "Education", href: "#education" },
+  { label: "Journey", href: "#education" },
+  { label: "Clubs", href: "#clubs" },
 ];
 
 const STATS = [
-  { value: "3+", label: "Years writing code" },
-  { value: "10+", label: "Projects & labs" },
-  { value: "3", label: "Spoken languages" },
+  { value: "3", label: "Internships" },
+  { value: "6", label: "Research & academic projects" },
+  { value: "2", label: "Certifications" },
 ];
 
 const FACTS = [
-  "Based in Tunisia",
-  "Open to internships",
+  "Tuni, Tunisia",
+  "ENIT — computer engineering",
   "Arabic · French · English",
+  "Open to internships",
+];
+
+const RESEARCH_INTERESTS = [
+  "AI for cybersecurity",
+  "Network & IoT security",
+  "Intrusion & anomaly detection",
+  "Explainable AI",
+  "LLMs for security",
+  "Intelligent threat detection",
 ];
 
 const SKILL_GROUPS = [
   {
     index: "01",
-    title: "Languages",
-    items: ["C", "C++", "Java", "Python", "JavaScript / TypeScript"],
+    title: "AI & Data",
+    items: [
+      "Machine learning",
+      "Deep learning",
+      "Data mining",
+      "Classification & anomaly detection",
+      "Feature engineering",
+      "Explainable AI (SHAP)",
+    ],
   },
   {
     index: "02",
-    title: "Web & Data",
-    items: ["HTML & CSS", "React", "Node.js", "SQL", "MongoDB"],
+    title: "Cybersecurity & Networks",
+    items: [
+      "Network security",
+      "Intrusion detection",
+      "Network traffic analysis",
+      "Threat detection & incident response",
+      "Access control",
+      "Malware analysis",
+    ],
   },
   {
     index: "03",
-    title: "Tools & CS Core",
+    title: "Programming & Frameworks",
     items: [
-      "Git & GitHub",
-      "Linux",
-      "Data structures & algorithms",
-      "Object-oriented programming",
-      "Networks",
+      "Python",
+      "Java · C / C#",
+      "Scikit-learn · NFStream · SHAP",
+      "Node.js / Express",
+      "Java EE · MySQL",
+    ],
+  },
+  {
+    index: "04",
+    title: "Tools",
+    items: ["Linux", "Docker", "GitHub", "Wireshark", "AVISPA / HLPSL", "Ganache"],
+  },
+];
+
+const EXPERIENCE = [
+  {
+    role: "AI-driven MDR platform",
+    org: "RFC — Réseaux, Formation, Conseil",
+    period: "06/2026 — 07/2026",
+    location: "Tunis, Tunisia",
+    points: [
+      "Designed an AI-driven MDR platform for network threat detection and response in an isolated VirtualBox environment.",
+      "Extracted network-flow features with NFStream and trained a Random Forest classifier for normal and multiple attack categories, with SHAP explainability and MITRE ATT&CK / D3FEND threat mapping.",
+      "Built a real-time detection dashboard and semi-automated response mechanism with Flask, Socket.IO and iptables; integrated a local LLM (Ollama / Phi-3 Mini) to support security analysis.",
+    ],
+  },
+  {
+    role: "Botnet detection — real-time application",
+    org: "YUCCAINFO",
+    period: "07/2025 — 08/2025",
+    location: "Sousse, Tunisia",
+    points: [
+      "Analyzed attacks targeting the RDP protocol and deployed a Docker-based testing lab simulating brute-force attacks, DoS and SSH tunneling.",
+      "Analyzed system logs to identify and investigate traces of attacks.",
+      "Studied security mechanisms including firewalls, VPNs and access-control measures.",
+    ],
+  },
+  {
+    role: "Software development intern",
+    org: "OPUS LAB",
+    period: "06/2025 — 07/2025",
+    location: "Tunis, Tunisia",
+    points: [
+      "Contributed to two web projects, focusing on application communication flows and collaboration within development teams.",
     ],
   },
 ];
 
-const PROJECTS = [
+const FEATURED_PROJECTS = [
   {
-    title: "CampusConnect",
-    tag: "React · Node.js · MySQL",
+    title: "AI-driven MDR Platform",
+    tag: "Python · Flask · NFStream · SHAP",
     description:
-      "A club and event management platform for students — schedules, announcements and RSVPs in one place.",
-    image: projCampus,
-    links: [
-      { label: "source", href: "#" },
-      { label: "live demo", href: "#" },
-    ],
+      "Managed detection & response for network threats: Random Forest classification of attack categories, SHAP explainability, MITRE ATT&CK/D3FEND mapping and a real-time dashboard with semi-automated response.",
+    image: projMdr,
+    link: { label: "source", href: "https://github.com/anouar-coder" },
   },
   {
-    title: "Sentivue",
-    tag: "Python · Flask · scikit-learn",
+    title: "Inference-Based Access Control for e-Health",
+    tag: "Final-Year Project · HLPSL · AVISPA",
     description:
-      "A sentiment analysis dashboard that classifies product reviews and visualizes trends over time.",
-    image: projAi,
-    links: [{ label: "source", href: "#" }],
+      "Formal validation of access control in e-health systems, plus a blockchain prototype (Ethereum, Solidity, Ganache, Node.js) with immutable audit logs and off-chain storage of clinical data.",
+    image: projEhealth,
+    link: { label: "source", href: "https://github.com/anouar-coder" },
   },
   {
-    title: "Pathfindr",
-    tag: "C++ · SDL",
+    title: "EEG Seizure Detection",
+    tag: "Biomedical data mining · ML pipeline",
     description:
-      "An interactive visualizer for pathfinding algorithms — A*, Dijkstra and BFS racing on a live grid.",
-    image: projMaze,
-    links: [{ label: "source", href: "#" }],
+      "End-to-end data mining and machine learning pipeline transforming raw EEG signals into features for automatic seizure-period detection, with signal preprocessing, feature extraction and classification.",
+    image: projEeg,
+    link: { label: "source", href: "https://github.com/anouar-coder" },
   },
 ];
 
-const TIMELINE = [
+const MORE_PROJECTS = [
   {
-    period: "2024 — Present",
-    title: "Engineering degree in Computer Science",
+    title: "Flood Risk Spatial Analysis",
+    tag: "Random Forest · web mapping",
     detail:
-      "Focus on software engineering, algorithms and systems. Coursework: data structures, databases, operating systems.",
+      "Hybrid modelling combining physics-based flood simulation with a Random Forest classifier for coastal flood-risk assessment, with an interactive web mapping platform for spatial predictions.",
   },
   {
-    period: "2022 — 2024",
-    title: "Preparatory cycle — Mathematics & Physics",
+    title: "Botnet Detection Lab",
+    tag: "Docker · log analysis",
     detail:
-      "Two intensive years building the mathematical foundations that now back everything I build in code.",
+      "Docker-based testing lab simulating RDP brute-force attacks, DoS and SSH tunneling, with system-log analysis to investigate attack traces. (YUCCAINFO internship)",
+  },
+  {
+    title: "Malware Analysis — PFA1",
+    tag: "FLARE VM · REMnux",
+    detail:
+      "Static, dynamic and hybrid analysis of a ransomware variant in a controlled lab, using VirusTotal, PEStudio and Wireshark to investigate behaviour and network activity.",
+  },
+];
+
+const EDUCATION = [
+  {
+    period: "09/2024 — Present",
+    title: "Computer Engineering — ENIT",
+    detail:
+      "École Nationale d'Ingénieurs de Tunis, Tunisia. Focus on artificial intelligence, machine learning and cybersecurity & network security.",
+  },
+  {
+    period: "Sep 2025 — Present",
+    title: "Master's in Systems and Communications (SYSCOM)",
+    detail:
+      "École Nationale d'Ingénieurs de Tunis (ENIT) — Tunis, Tunisia.",
+  },
+  {
+    period: "09/2022 — 06/2024",
+    title: "Preparatory Cycle — Mathematics & Physics",
+    detail:
+      "Institut Préparatoire aux Études d'Ingénieurs de Nabeul (IPEIN) — Nabeul, Tunisia.",
+  },
+];
+
+const CERTIFICATIONS = [
+  "CCNAv7 — Introduction to Networks",
+  "Opus Lab — Web Development",
+];
+
+const CLUBS = [
+  {
+    period: "09/2025 — 08/2026",
+    role: "Senior Member / Client Project Manager",
+    org: "ENIT Junior Entreprise",
+    detail:
+      "Managed client-oriented projects, contributed to two client projects and participated in professional events including Forum ENIT Entreprise.",
+  },
+  {
+    period: "10/2024 — 08/2025",
+    role: "Active member",
+    org: "ENIT Junior Entreprise",
+    detail:
+      "Participated in various student projects, developing skills in project management, teamwork, collaboration and professionalism.",
   },
   {
     period: "Ongoing",
-    title: "Hackathons & personal projects",
+    role: "Cybersecurity workshops & CTFs",
+    org: "SecuriNets ENIT",
     detail:
-      "Weekend builds, algorithm practice and open-source exploration — always shipping something new.",
+      "Participated in cybersecurity workshops and Capture The Flag (CTF) competitions.",
   },
 ];
 
-const BEYOND_CODE = [
-  "Tech meetups",
+const SOFT_SKILLS = [
+  "Leadership & initiative",
+  "Teamwork",
+  "Analytical & critical thinking",
   "Problem solving",
-  "Chess",
-  "Open-source",
-  "Photography",
+  "Independent learning",
+  "Adaptability",
+  "Scientific curiosity",
+  "Communication & negotiation",
 ];
 
 const CONTACT = {
-  email: "anwar.benbrahim@example.com", // TODO: replace with your real email
-  github: "#", // TODO: replace with https://github.com/<your-username>
-  linkedin: "#", // TODO: replace with your LinkedIn profile URL
+  email: "anwar.benbrahim@etudiant-enit.utm.tn",
+  phone: "+216 27 213 968",
+  phoneHref: "tel:+21627213968",
+  github: "https://github.com/anouar-coder",
+  linkedin: "https://linkedin.com/in/anwar-ben-brahim-68626034a",
 };
 
 /* ------------------------------------------------------------------ */
@@ -164,8 +281,10 @@ function Portfolio() {
           <Hero />
           <About />
           <Skills />
+          <Experience />
           <Projects />
           <Education />
+          <Clubs />
           <Contact />
         </main>
         <Footer />
@@ -185,7 +304,7 @@ function Nav() {
         <a href="#top" className="font-display text-lg font-bold tracking-tight">
           anwar<span className="text-primary">.</span>dev
         </a>
-        <div className="hidden items-center gap-7 font-mono text-[13px] text-muted-foreground md:flex">
+        <div className="hidden items-center gap-6 font-mono text-[13px] text-muted-foreground lg:flex">
           {NAV.map((item) => (
             <a
               key={item.href}
@@ -217,15 +336,15 @@ function Hero() {
       <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
         <div className="fade-up">
           <p className="font-mono text-[13px] uppercase tracking-[0.2em] text-primary">
-            ~/anwar — computer science engineering student
+            ~/anwar — computer engineering student
           </p>
           <h1 className="mt-6 font-display text-5xl font-bold leading-[0.95] tracking-tight text-balance sm:text-6xl lg:text-7xl">
             Anwar Ben Brahim<span className="text-primary">.</span>
           </h1>
           <p className="mt-6 max-w-[48ch] text-lg text-muted-foreground text-pretty">
-            I turn curiosity into working software — from algorithms on paper to
-            full-stack apps in the browser. Currently studying, building and
-            shipping one project at a time.
+            Computer engineering student at ENIT, focused on artificial
+            intelligence, machine learning and cybersecurity — building
+            intelligent systems that keep networks safe.
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
             <a
@@ -316,17 +435,17 @@ function About() {
       <div className="mt-10 grid gap-10 lg:grid-cols-12">
         <div className="lg:col-span-7">
           <p className="max-w-[52ch] text-lg leading-relaxed text-muted-foreground text-pretty">
-            I'm Anwar, a computer science engineering student who likes the part
-            of the machine you can't see. I spend my days studying algorithms
-            and systems, and my nights turning course concepts into small,
-            working products — because the best way to understand something is
-            to build it.
+            Computer engineering student at ENIT with hands-on experience in
+            artificial intelligence, machine learning and cybersecurity through
+            academic, research and engineering projects. Interested in
+            AI-driven security, intelligent systems, network security and
+            emerging AI applications.
           </p>
           <p className="mt-5 max-w-[52ch] leading-relaxed text-muted-foreground text-pretty">
-            Right now I'm deepening my knowledge of software architecture and
-            web development, while looking for internship opportunities where I
-            can contribute to real projects and learn from experienced
-            engineers.
+            I like the part of the machine you can't see — from network flows
+            and attack traces to explainable models. Right now I'm deepening my
+            knowledge of AI-driven security while looking for opportunities to
+            contribute to real projects.
           </p>
           <div className="mt-7 flex flex-wrap gap-2.5">
             {FACTS.map((fact) => (
@@ -338,6 +457,21 @@ function About() {
               </span>
             ))}
           </div>
+          <div className="mt-8">
+            <p className="font-mono text-[12px] uppercase tracking-wider text-muted-foreground">
+              research interests
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {RESEARCH_INTERESTS.map((item) => (
+                <span
+                  key={item}
+                  className="rounded-full border border-border px-3 py-1.5 text-xs font-medium text-foreground"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
         <div className="lg:col-span-5">
           <div className="rounded-2xl border border-border bg-card p-6 font-mono text-[13px] leading-relaxed">
@@ -345,13 +479,19 @@ function About() {
               <span className="text-primary">$</span> cat about.txt
             </p>
             <p className="mt-3 text-foreground/90">
-              engineering student · problem solver · self-taught builder
+              computer engineering @ ENIT · AI & cybersecurity
             </p>
             <p className="mt-3 text-muted-foreground">
               <span className="text-primary">$</span> current_focus
             </p>
             <p className="text-foreground/90">
-              software engineering · web development · algorithms
+              AI-driven security · explainable AI · intelligent threat detection
+            </p>
+            <p className="mt-3 text-muted-foreground">
+              <span className="text-primary">$</span> now
+            </p>
+            <p className="text-foreground/90">
+              client project manager @ ENIT Junior Entreprise
             </p>
             <p className="mt-3 text-muted-foreground">
               <span className="text-primary">$</span>{" "}
@@ -371,8 +511,8 @@ function About() {
 function Skills() {
   return (
     <section id="skills" className="border-t border-border py-16 lg:py-20">
-      <SectionHeading eyebrow="skills" title="What I work with" />
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <SectionHeading eyebrow="skills" title="Technical skills" />
+      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {SKILL_GROUPS.map((group) => (
           <div
             key={group.index}
@@ -383,13 +523,59 @@ function Skills() {
             </p>
             <ul className="mt-4 space-y-2.5">
               {group.items.map((item) => (
-                <li key={item} className="flex items-center gap-2.5 text-sm">
-                  <span className="size-1.5 shrink-0 rounded-full bg-primary" />
+                <li key={item} className="flex items-start gap-2.5 text-sm">
+                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-primary" />
                   {item}
                 </li>
               ))}
             </ul>
           </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Experience                                                         */
+/* ------------------------------------------------------------------ */
+
+function Experience() {
+  return (
+    <section id="experience" className="border-t border-border py-16 lg:py-20">
+      <SectionHeading eyebrow="experience" title="Internships & work" />
+      <div className="mt-10 space-y-5">
+        {EXPERIENCE.map((job, i) => (
+          <article
+            key={job.org}
+            className="rounded-2xl border border-border bg-card p-6 sm:p-7"
+          >
+            <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+              <div>
+                <h3 className="font-display text-lg font-semibold tracking-tight">
+                  {job.role}
+                </h3>
+                <p className="mt-0.5 text-sm text-primary">
+                  {job.org}
+                  <span className="text-muted-foreground"> · {job.location}</span>
+                </p>
+              </div>
+              <p className="font-mono text-[12px] text-muted-foreground">
+                {String(i + 1).padStart(2, "0")} — {job.period}
+              </p>
+            </div>
+            <ul className="mt-4 space-y-2">
+              {job.points.map((point) => (
+                <li
+                  key={point}
+                  className="flex items-start gap-2.5 text-sm leading-relaxed text-muted-foreground"
+                >
+                  <span className="mt-2 size-1.5 shrink-0 rounded-full bg-primary" />
+                  {point}
+                </li>
+              ))}
+            </ul>
+          </article>
         ))}
       </div>
     </section>
@@ -403,9 +589,9 @@ function Skills() {
 function Projects() {
   return (
     <section id="projects" className="border-t border-border py-16 lg:py-20">
-      <SectionHeading eyebrow="projects" title="Selected projects" />
+      <SectionHeading eyebrow="projects" title="Research & academic projects" />
       <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {PROJECTS.map((project, i) => (
+        {FEATURED_PROJECTS.map((project, i) => (
           <article
             key={project.title}
             className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-transform hover:-translate-y-1"
@@ -429,25 +615,37 @@ function Projects() {
                 {project.description}
               </p>
               <div className="mt-5 flex items-center gap-4 font-mono text-[13px]">
-                {project.links.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    className="inline-flex items-center gap-1.5 text-foreground transition-colors hover:text-primary"
-                  >
-                    {link.label}
-                    <ArrowIcon className="size-3.5" />
-                  </a>
-                ))}
+                <a
+                  href={project.link.href}
+                  className="inline-flex items-center gap-1.5 text-foreground transition-colors hover:text-primary"
+                >
+                  {project.link.label}
+                  <ArrowIcon className="size-3.5" />
+                </a>
               </div>
             </div>
           </article>
         ))}
       </div>
-      <p className="mt-6 font-mono text-[12px] text-muted-foreground">
-        + more coursework projects, scripts and experiments on GitHub — see the
-        links below.
-      </p>
+
+      <div className="mt-6 grid gap-4 md:grid-cols-3">
+        {MORE_PROJECTS.map((project) => (
+          <div
+            key={project.title}
+            className="rounded-2xl border border-border bg-card/50 p-5"
+          >
+            <p className="font-mono text-[11px] uppercase tracking-wider text-primary">
+              {project.tag}
+            </p>
+            <h3 className="mt-1.5 font-display text-base font-semibold tracking-tight">
+              {project.title}
+            </h3>
+            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground text-pretty">
+              {project.detail}
+            </p>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }
@@ -459,10 +657,10 @@ function Projects() {
 function Education() {
   return (
     <section id="education" className="border-t border-border py-16 lg:py-20">
-      <SectionHeading eyebrow="education" title="My journey" />
+      <SectionHeading eyebrow="journey" title="Education" />
       <div className="mt-10 grid gap-10 lg:grid-cols-12">
         <ol className="max-w-2xl space-y-0 border-l border-border lg:col-span-8">
-          {TIMELINE.map((item, i) => (
+          {EDUCATION.map((item, i) => (
             <li key={item.title} className="relative pb-9 pl-8 last:pb-0">
               <span
                 className={`absolute -left-[5px] top-1.5 size-2.5 rounded-full ring-4 ring-background ${
@@ -481,22 +679,84 @@ function Education() {
             </li>
           ))}
         </ol>
-        <div className="lg:col-span-4">
+        <div className="space-y-4 lg:col-span-4">
           <div className="rounded-2xl border border-border bg-card p-6">
             <p className="font-mono text-[12px] uppercase tracking-wider text-muted-foreground">
-              beyond the code
+              certifications
+            </p>
+            <ul className="mt-4 space-y-2.5">
+              {CERTIFICATIONS.map((cert) => (
+                <li key={cert} className="flex items-start gap-2.5 text-sm">
+                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-primary" />
+                  {cert}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="rounded-2xl border border-border bg-card p-6">
+            <p className="font-mono text-[12px] uppercase tracking-wider text-muted-foreground">
+              languages
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
-              {BEYOND_CODE.map((item) => (
+              {["Arabic", "French", "English"].map((lang) => (
                 <span
-                  key={item}
+                  key={lang}
                   className="rounded-full bg-secondary px-3 py-1.5 text-xs font-medium text-secondary-foreground"
                 >
-                  {item}
+                  {lang}
                 </span>
               ))}
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Clubs & social life                                                */
+/* ------------------------------------------------------------------ */
+
+function Clubs() {
+  return (
+    <section id="clubs" className="border-t border-border py-16 lg:py-20">
+      <SectionHeading
+        eyebrow="clubs & leadership"
+        title="Social life & student clubs"
+      />
+      <div className="mt-10 grid gap-5 lg:grid-cols-3">
+        {CLUBS.map((club) => (
+          <div
+            key={club.org + club.period}
+            className="rounded-2xl border border-border bg-card p-6 transition-transform hover:-translate-y-1"
+          >
+            <p className="font-mono text-[12px] text-muted-foreground">
+              {club.period}
+            </p>
+            <h3 className="mt-2 font-display text-lg font-semibold tracking-tight">
+              {club.org}
+            </h3>
+            <p className="mt-0.5 text-sm text-primary">{club.role}</p>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground text-pretty">
+              {club.detail}
+            </p>
+          </div>
+        ))}
+      </div>
+      <div className="mt-6 rounded-2xl border border-border bg-card p-6">
+        <p className="font-mono text-[12px] uppercase tracking-wider text-muted-foreground">
+          soft skills
+        </p>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {SOFT_SKILLS.map((skill) => (
+            <span
+              key={skill}
+              className="rounded-full bg-secondary px-3 py-1.5 text-xs font-medium text-secondary-foreground"
+            >
+              {skill}
+            </span>
+          ))}
         </div>
       </div>
     </section>
@@ -527,30 +787,37 @@ function Contact() {
             Let's build something together.
           </h2>
           <p className="mt-4 max-w-[46ch] text-muted-foreground text-pretty">
-            Looking for internships, collaborations on student projects, or just
-            a good conversation about code — my inbox is open.
+            Looking for internships, collaborations on AI or security projects,
+            or just a good conversation about code — my inbox is open.
           </p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:gap-4">
+          <div className="mt-9 grid gap-3 sm:grid-cols-2">
             <a
               href={`mailto:${CONTACT.email}`}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5"
+              className="glow-primary inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5"
             >
               <MailIcon />
               {CONTACT.email}
+            </a>
+            <a
+              href={CONTACT.phoneHref}
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-border px-5 py-3 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
+            >
+              <PhoneIcon />
+              {CONTACT.phone}
             </a>
             <a
               href={CONTACT.github}
               className="inline-flex items-center justify-center gap-2 rounded-full border border-border px-5 py-3 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
             >
               <GitHubIcon />
-              github
+              github.com/anouar-coder
             </a>
             <a
               href={CONTACT.linkedin}
               className="inline-flex items-center justify-center gap-2 rounded-full border border-border px-5 py-3 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
             >
               <LinkedInIcon />
-              linkedin
+              linkedin — anwar ben brahim
             </a>
           </div>
           <p className="mt-8 font-mono text-[12px] text-muted-foreground">
@@ -611,6 +878,23 @@ function MailIcon() {
       strokeLinejoin="round"
     >
       <path d="M2 4h12v8H2zM2 4l6 5 6-5" />
+    </svg>
+  );
+}
+
+function PhoneIcon() {
+  return (
+    <svg
+      className="size-4 shrink-0"
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden
+      strokeWidth="1.4"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M6 3v3l2 1-2.5 2.5A7 7 0 008 12l2-2 1 2h3V6l-2-1-2 2a5 5 0 01-2-2l2-2h-2z" />
     </svg>
   );
 }
