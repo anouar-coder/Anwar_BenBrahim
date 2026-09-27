@@ -170,6 +170,24 @@ const FEATURED_PROJECTS = [
 
 const MORE_PROJECTS = [
   {
+    title: "Name Matching Engine",
+    tag: "Java · deduplication",
+    detail:
+      "An efficient application to search, compare and eliminate duplicates in large name lists.",
+  },
+  {
+    title: "Pilates Course Manager",
+    tag: "Cross-platform mobile app",
+    detail:
+      "Class scheduling, messaging with the coach, push notifications and online payment in one multi-platform app.",
+  },
+  {
+    title: "Smurf Game",
+    tag: "C#",
+    detail:
+      "A game developed in C#, built as a personal software project.",
+  },
+  {
     title: "Flood Risk Spatial Analysis",
     tag: "Random Forest · web mapping",
     detail:
