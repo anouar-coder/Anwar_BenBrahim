@@ -249,7 +249,7 @@ const en = {
     items: [
       {
         period: "09/2025 — 08/2026",
-        role: "Senior Member / Client Project Manager",
+        role: "Senior Member",
         org: "ENIT Junior Entreprise",
         detail:
           "Managed client-oriented projects, contributed to two client projects and participated in professional events including Forum ENIT Entreprise.",
@@ -283,13 +283,13 @@ const en = {
     },
   },
   contact: {
-    eyebrow: "$ contact --now",
+    eyebrow: "$ contact",
     title: "Let's build something together.",
-    body: "Looking for internships, collaborations on AI or security projects, or just a good conversation about code — my inbox is open.",
+    body: "Looking for internships, collaborations on AI or security projects.",
     githubLabel: "github.com/anouar-coder",
-    linkedinLabel: "linkedin — anwar ben brahim",
-    cvLabel: "cv — anwar ben brahim",
-    replyNote: "I read every message — expect a reply within a day.",
+    linkedinLabel: "linkedin/anwar ben brahim",
+    cvLabel: "cv_anwar ben brahim",
+    replyNote: "",
   },
   footer: {
     credit: "© 2026 Anwar Ben Brahim — designed & built with care",

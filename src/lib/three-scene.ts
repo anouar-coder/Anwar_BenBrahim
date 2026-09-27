@@ -44,8 +44,10 @@ const POINTER_EASE = 0.05;
 const POINTER_TILT = 0.06;
 
 const BOX = 55;
-const LINK_DISTANCE = 10.5;
-const MAX_LINKS = 2400;
+const BASE_DISTANCE = 62;
+const FRAME_FILL = 0.8;
+const LINK_DISTANCE = 12.5;
+const MAX_LINKS = 3200;
 /** A link is two endpoints of three floats each. */
 const FLOATS_PER_LINK = 6;
 
@@ -70,7 +72,7 @@ export type ParticleField3D = {
 export function particleCount(): number {
   const area = window.innerWidth * window.innerHeight;
 
-  return Math.min(760, Math.max(260, Math.round(area / 2600)));
+  return Math.min(900, Math.max(300, Math.round(area / 2400)));
 }
 
 function buildGeometry(count: number) {
@@ -146,25 +148,23 @@ function buildGeometry(count: number) {
 export function createParticleField3D(canvas: HTMLCanvasElement, count: number): ParticleField3D {
   const { pointsGeometry, linkGeometry } = buildGeometry(count);
 
-  const points = new Points(
-    pointsGeometry,
-    new PointsMaterial({
-      size: 0.62,
-      sizeAttenuation: true,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.9,
-      depthWrite: false,
-      blending: AdditiveBlending,
-    }),
-  );
+  const pointMaterial = new PointsMaterial({
+    size: 0.62,
+    sizeAttenuation: true,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.9,
+    depthWrite: false,
+    blending: AdditiveBlending,
+  });
+  const points = new Points(pointsGeometry, pointMaterial);
 
   const links = new LineSegments(
     linkGeometry,
     new LineBasicMaterial({
       vertexColors: true,
       transparent: true,
-      opacity: 0.28,
+      opacity: 0.68,
       depthWrite: false,
       blending: AdditiveBlending,
     }),
@@ -177,7 +177,10 @@ export function createParticleField3D(canvas: HTMLCanvasElement, count: number):
   scene.add(group);
 
   const camera = new PerspectiveCamera(58, 1, 0.1, 220);
-  camera.position.set(0, 0, 62);
+  camera.position.set(0, 0, BASE_DISTANCE);
+
+  let distance = BASE_DISTANCE;
+  let parallax = PARALLAX;
 
   const renderer = new WebGLRenderer({
     canvas,
@@ -200,6 +203,21 @@ export function createParticleField3D(canvas: HTMLCanvasElement, count: number):
 
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
+
+      // A fixed distance only spans half a wide viewport, so the mask used to
+      // reveal empty space rather than particles. Fit the box to the frame.
+      const vFov = (camera.fov * Math.PI) / 180;
+      const halfBox = BOX / 2;
+      const distV = halfBox / Math.tan(vFov / 2) / FRAME_FILL;
+      const distH = halfBox / (Math.tan(vFov / 2) * camera.aspect) / FRAME_FILL;
+      distance = Math.min(90, Math.max(30, Math.min(distV, distH)));
+      camera.position.z = distance;
+
+      // Moving the camera changes apparent point size and drift, so rescale
+      // both to keep the field looking identical.
+      const scale = distance / BASE_DISTANCE;
+      pointMaterial.size = 0.62 * scale;
+      parallax = PARALLAX * scale;
     },
 
     draw(elapsed) {
@@ -211,8 +229,8 @@ export function createParticleField3D(canvas: HTMLCanvasElement, count: number):
 
       // The camera slides against the pointer while the cloud rolls with it, so
       // near particles travel further than far ones and the field reads as depth.
-      camera.position.x = -pointerNow.x * PARALLAX;
-      camera.position.y = -pointerNow.y * PARALLAX;
+      camera.position.x = -pointerNow.x * parallax;
+      camera.position.y = -pointerNow.y * parallax;
       group.rotation.z = -pointerNow.x * POINTER_TILT;
 
       renderer.render(scene, camera);

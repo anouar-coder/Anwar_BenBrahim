@@ -52,12 +52,12 @@ function Portfolio() {
         className="pointer-events-none fixed inset-0 -z-20"
         style={{
           maskImage:
-            "radial-gradient(ellipse 62% 70% at 50% 50%, transparent 0%, rgba(0,0,0,0.25) 38%, #000 78%)",
+            "radial-gradient(ellipse 68% 74% at 50% 50%, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.32) 30%, #000 70%)",
           WebkitMaskImage:
-            "radial-gradient(ellipse 62% 70% at 50% 50%, transparent 0%, rgba(0,0,0,0.25) 38%, #000 78%)",
+            "radial-gradient(ellipse 68% 74% at 50% 50%, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.32) 30%, #000 70%)",
         }}
       >
-        <ParticleField className="h-full w-full opacity-60" />
+        <ParticleField className="h-full w-full opacity-85" />
       </div>
 
       {/* Ambient glows */}
