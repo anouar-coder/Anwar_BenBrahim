@@ -44,18 +44,67 @@ function isH3SwallowedErrorBody(body: string): boolean {
   }
 }
 
+/**
+ * Applied to every response, so the guarantees hold for the server-rendered
+ * HTML as well as for the static assets.
+ *
+ * `'unsafe-inline'` is still needed on script-src and style-src because the
+ * framework inlines the hydration payload and the page sets a few inline
+ * styles. There is no user input anywhere on the site, so the residual XSS
+ * surface is the markup itself, and everything else is locked down: no plugins,
+ * no framing, no camera, and Google Fonts is the single allowed third party.
+ */
+const CONTENT_SECURITY_POLICY = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline'",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "font-src 'self' https://fonts.gstatic.com",
+  "img-src 'self' data: blob:",
+  "connect-src 'self' https://fonts.gstatic.com",
+  "frame-src 'none'",
+  "frame-ancestors 'none'",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "manifest-src 'self'",
+  "worker-src 'self' blob:",
+].join("; ");
+
+const SECURITY_HEADERS: ReadonlyArray<readonly [string, string]> = [
+  ["content-security-policy", CONTENT_SECURITY_POLICY],
+  ["x-content-type-options", "nosniff"],
+  ["x-frame-options", "DENY"],
+  ["referrer-policy", "strict-origin-when-cross-origin"],
+  ["permissions-policy", "camera=(), microphone=(), geolocation=(), payment=(), usb=()"],
+  ["cross-origin-opener-policy", "same-origin"],
+  ["cross-origin-resource-policy", "same-origin"],
+  ["strict-transport-security", "max-age=63072000; includeSubDomains; preload"],
+];
+
+function withSecurityHeaders(response: Response): Response {
+  for (const [name, value] of SECURITY_HEADERS) {
+    // Never advertise a weaker policy than the one already set.
+    if (name === "content-security-policy" && response.headers.has(name)) continue;
+    response.headers.set(name, value);
+  }
+
+  return response;
+}
+
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
-      return await normalizeCatastrophicSsrResponse(response);
+      return withSecurityHeaders(await normalizeCatastrophicSsrResponse(response));
     } catch (error) {
       console.error(error);
-      return new Response(renderErrorPage(), {
-        status: 500,
-        headers: { "content-type": "text/html; charset=utf-8" },
-      });
+      return withSecurityHeaders(
+        new Response(renderErrorPage(), {
+          status: 500,
+          headers: { "content-type": "text/html; charset=utf-8" },
+        }),
+      );
     }
   },
 };
