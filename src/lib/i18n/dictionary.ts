@@ -292,7 +292,7 @@ const en = {
     replyNote: "",
   },
   footer: {
-    credit: "© 2026 Anwar Ben Brahim — designed & built with care",
+    credit: "© 2026 Anwar Ben Brahim",
     statusLabel: "status",
     status: "open to internships",
   },
